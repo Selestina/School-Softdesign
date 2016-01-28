@@ -1,4 +1,4 @@
-package com.softdesign.school;
+package com.softdesign.school.ui.activities;
 
 import android.os.Build;
 import android.support.v7.app.ActionBar;
@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import com.softdesign.school.R;
 import com.softdesign.school.utils.Lg;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
