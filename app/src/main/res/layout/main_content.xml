@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
+            android:text="@string/text.helloworld"
             android:id="@+id/textView"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
@@ -50,7 +50,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="blue"
+        android:text="@string/button.blue"
         android:id="@+id/btn_blue"
         android:layout_below="@+id/linearLayout"
         android:layout_alignParentLeft="true"
@@ -59,7 +59,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="green"
+        android:text="@string/button.green"
         android:id="@+id/btn_green"
         android:layout_alignTop="@+id/btn_blue"
         android:layout_centerHorizontal="true" />
@@ -67,7 +67,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="red"
+        android:text="@string/button.red"
         android:id="@+id/btn_red"
         android:layout_alignBottom="@+id/btn_green"
         android:layout_alignRight="@+id/linearLayout"
