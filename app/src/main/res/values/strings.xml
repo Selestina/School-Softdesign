@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">School</string>
+
+    <string name="error.message.network">Network error</string>
+    <string name="error.message.call">Call failed</string>
+    <string name="error.message.map">Map loading failed</string>
+    <string name="button.red">red</string>
+    <string name="button.green">green</string>
+    <string name="button.blue">blue</string>
+    <string name="text.helloworld">HelloWorld</string>
 </resources>
