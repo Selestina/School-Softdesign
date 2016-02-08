@@ -1,6 +1,10 @@
 package com.softdesign.school.ui.activities;
 
 import android.os.Build;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,173 +15,96 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.softdesign.school.R;
+import com.softdesign.school.ui.fragments.ContactsFragment;
+import com.softdesign.school.ui.fragments.ProfileFragment;
+import com.softdesign.school.ui.fragments.SettingFragment;
+import com.softdesign.school.ui.fragments.TasksFragment;
+import com.softdesign.school.ui.fragments.TeamFragment;
 import com.softdesign.school.utils.Lg;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     /**приватные переменные
-     * mCheckBox - Checkbox
-     * mButtonBlue - кнопка, изменяющая цвет Toolbar и Statusbar на синий
-     * mButtonGreen - кнопка, изменяющая цвет Toolbar и Statusbar на зелёный
-     * mButtonRed - кнопка, изменяющая цвет Toolbar и Statusbar на красный
      * mToolbar - кастомный ToolBar
-     * mColorId - переменная с id цвета, меняющегося в Toolbar и StatusBar
+     * mFragment - фрагмент
      */
-    private CheckBox mCheckBox;
-    private Button mButtonBlue;
-    private Button mButtonGreen;
-    private Button mButtonRed;
     private Toolbar mToolbar;
-    private int mColorId;
-
+    private NavigationView mNavigationView;
+    private DrawerLayout mNavigationDrawer;
+    private Fragment mFragment;
+    private FrameLayout mFrameContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setTitle("Hello ");
-        Lg.e(this.getLocalClassName(), "on create");
-
-        mCheckBox = (CheckBox) findViewById(R.id.checkBox);
-        mCheckBox.setOnClickListener(this);
-
-        mButtonBlue = (Button) findViewById(R.id.btn_blue);
-        mButtonBlue.setOnClickListener(this);
-
-        mButtonGreen = (Button) findViewById(R.id.btn_green);
-        mButtonGreen.setOnClickListener(this);
-
-        mButtonRed = (Button) findViewById(R.id.btn_red);
-        mButtonRed.setOnClickListener(this);
+        mNavigationDrawer =(DrawerLayout) findViewById(R.id.navigation_drawer);
+        mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mColorId = R.color.colorPrimary;
         setupToolbar();
+        setupDrawer();
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_container, new ProfileFragment()).commit();
 
     }
-/** Метод проверяет , есть ли поддержка ActionBar. Если есть устанавливает Toolbar,
+/** Устанавливает Toolbar,
  *  иконку для кнопки Home*/
     private void setupToolbar(){
         setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar !=null){
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_24dp);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-
-        }
-    }
-/** Обработчик события OnClick
- * кнопки (btn_blue, btn_green, btn_red) меняют при нажатии цвет Toolbar и Statusbar.
- * В mColorId записывается id цвета.*/
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-        switch (id) {
-            case R.id.checkBox:
-                Toast.makeText(this, "Click!", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.btn_blue:
-                mToolbar.setBackgroundColor(getResources().getColor(R.color.blue));
-                changeStatusbarColor(getResources().getColor(R.color.blue_dark));
-                mColorId = R.color.blue;
-                break;
-            case R.id.btn_green:
-                mToolbar.setBackgroundColor(getResources().getColor(R.color.green));
-                changeStatusbarColor(getResources().getColor(R.color.green_dark));
-                mColorId = R.color.green;
-                break;
-            case R.id.btn_red:
-                mToolbar.setBackgroundColor(getResources().getColor(R.color.red));
-                changeStatusbarColor(getResources().getColor(R.color.red_dark));
-                mColorId = R.color.red;
-                break;
-        }
-    }
-/** метод меняет цвет Statusbar на цвет из ColorId.
- * Проверяет, поддерживается ли данная замена
- * вызывает метод, изменяющий цвет.*/
-    private void changeStatusbarColor(int colorId) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(colorId);
-        }
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_24dp);
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt("mColorId", mColorId);
-        Lg.e(this.getLocalClassName(), "Save instance");
-    }
-    /**Метод считывает из Bundle целочисленную переменную colorId с ID цвета Toolbar.
-     * Если в Bundle она не определена, то берётся id цвета по умолчанию.
-     * Далее изменяется цвет ToolBar и StatusBar c помощью метода changeStatusbarColor(). */
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        mColorId = savedInstanceState.getInt("mColorId");
-        mToolbar.setBackgroundColor(getResources().getColor(mColorId));
-        switch (mColorId) {
-            case R.color.red:
-                changeStatusbarColor(getResources().getColor(R.color.red_dark));
-                break;
-            case R.color.green:
-                changeStatusbarColor(getResources().getColor(R.color.green_dark));
-                break;
-            case R.color.blue:
-                changeStatusbarColor(getResources().getColor(R.color.blue_dark));
-                break;
-        }
-        super.onRestoreInstanceState(savedInstanceState);
-        Lg.e(this.getLocalClassName(), "Restore instance");
-    }
-
-    /** выводит сообщение при нажатии кнопки Home*/
+    /** при нажатии кнопки Home появляется меню*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId()==android.R.id.home) {
-            Toast.makeText(this,"Menu",Toast.LENGTH_SHORT).show();
+            mNavigationDrawer.openDrawer(GravityCompat.START);
         }
         return super.onOptionsItemSelected(item);
     }
+/**Взаимодействие с пунктами меню.
+ * Работа с фрагментами. */
+    private void setupDrawer() {
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Lg.e(this.getLocalClassName(), "on start");
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.drawer_profile:
+                        mFragment = new ProfileFragment();
+                        break;
+                    case R.id.drawer_contacts:
+                        mFragment = new ContactsFragment();;
+                        break;
+                    case R.id.drawer_setting:
+                        mFragment = new SettingFragment();
+                        break;
+                    case R.id.drawer_tasks:
+                        mFragment = new TasksFragment();
+                        break;
+                    case R.id.drawer_team:
+                        mFragment = new TeamFragment();
+                        break;
+                }
+                if (mFragment != null) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_container, mFragment).addToBackStack(null).commit();
+                }
+                mNavigationDrawer.closeDrawers();
+                return false;
+            }
+        });
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Lg.e(this.getLocalClassName(), "on resume");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Lg.e(this.getLocalClassName(), "on pause");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Lg.e(this.getLocalClassName(), "on stop");
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Lg.e(this.getLocalClassName(), "on restart");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Lg.e(this.getLocalClassName(), "on destroy");
+ /** Обрабатывает нажатие на клавишу Back */
+    public void onBackPressed() {
+        super.onBackPressed();
+        mFragment = getSupportFragmentManager().findFragmentById(R.id.main_frame_container);
     }
 }
