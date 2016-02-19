@@ -27,7 +27,25 @@
     <dimen name="nav_header_padding_small">8dp</dimen>
     <dimen name="nav_photo_size">80dp</dimen>
 
+    <dimen name="view_padding">8dp</dimen>
+
+    <dimen name="toolbar_image_height">256dp</dimen>
+
+    <dimen name="profile_icon_size">24dp</dimen>
+    <dimen name="profile_text_margin">56dp</dimen>
+
+    <dimen name="item_height">72dp</dimen>
+    <dimen name="item_avatar_size">40dp</dimen>
+    <dimen name="item_text_margin">56dp</dimen>
+
+    <dimen name="toolbar_rate_size">48dp</dimen>
+    <dimen name="toolbar_rating_size">28dp</dimen>
+
     <!-- font-->
     <dimen name="nav_header_font_size">14sp</dimen>
     <dimen name="nav_rating_size">28dp</dimen>
+    <dimen name="title_marg_start">64dp</dimen>
+    <dimen name="size_user_avatar">40dp</dimen>
+    <dimen name="size_item_user_card">72dp</dimen>
+    <dimen name="radius_card">2dp</dimen>
 </resources>

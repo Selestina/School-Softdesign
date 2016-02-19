@@ -2,6 +2,10 @@ package com.softdesign.school.ui.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,6 +21,9 @@ public class TeamFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View convertView = inflater.inflate(R.layout.fragment_team, null, false);
         getActivity().setTitle(getResources().getString(R.string.drawer_team));
+        CollapsingToolbarLayout toolbar = (CollapsingToolbarLayout) getActivity().findViewById(R.id.collapse_toolbar);
+        // Заголовок фрагмента
+        toolbar.setTitle(getResources().getString(R.string.drawer_team));
         return convertView;
     }
 
@@ -25,6 +32,12 @@ public class TeamFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         NavigationView mNavigationView = (NavigationView) getActivity().findViewById(R.id.navigation_view);
         mNavigationView.getMenu().findItem(R.id.drawer_team).setChecked(true);
-        
+
+        FloatingActionButton actionButton = (FloatingActionButton) getActivity().findViewById(R.id.float_action_button);
+        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) actionButton.getLayoutParams();
+
+        AppBarLayout appBar = (AppBarLayout) getActivity().findViewById(R.id.appbar_layout);
+        appBar.setExpanded(false);
+
     }
 }
