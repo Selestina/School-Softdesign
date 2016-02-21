@@ -26,27 +26,28 @@ import com.softdesign.school.ui.fragments.TasksFragment;
 import com.softdesign.school.ui.fragments.TeamFragment;
 import com.softdesign.school.utils.Lg;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
 
     /**приватные переменные
      * mToolbar - кастомный ToolBar
      * mFragment - фрагмент
      */
-    private Toolbar mToolbar;
-    private NavigationView mNavigationView;
-    private DrawerLayout mNavigationDrawer;
+
     private Fragment mFragment;
-    private FrameLayout mFrameContainer;
+
+    @Bind(R.id.toolbar) Toolbar mToolbar;
+    @Bind(R.id.navigation_drawer) DrawerLayout mNavigationDrawer;
+    @Bind(R.id.navigation_view) NavigationView mNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
-        mNavigationDrawer =(DrawerLayout) findViewById(R.id.navigation_drawer);
-        mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
-
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setupToolbar();
         setupDrawer();
 
