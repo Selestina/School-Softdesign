@@ -8,4 +8,60 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Styles for fragment_profile -->
+    <style name="profile_relative_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/item_height</item>
+    </style>
+
+    <style name="profile_image_view">
+        <item name="android:layout_width">@dimen/profile_icon_size</item>
+        <item name="android:layout_height">@dimen/profile_icon_size</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <style name="profile_linear_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentLeft">true</item>
+
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingLeft">@dimen/profile_text_margin</item>
+    </style>
+
+    <style name="profile_textview">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/nav_header_font_size</item>
+    </style>
+
+    <style name="profile_separator">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@android:color/darker_gray</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_marginLeft">@dimen/profile_text_margin</item>
+    </style>
+
+    <!-- Styles for CollapsingToolbar Text -->
+
+    <style name="toolbar_expanded_title">
+        <item name="android:textColor">@color/title_color</item>
+        <item name="android:textSize">@dimen/toolbar_rating_size</item>
+        <item name="android:textStyle">bold</item>
+        <!-- Text Outline -->
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">0.0</item>
+        <item name="android:shadowDy">0.0</item>
+        <item name="android:shadowRadius">3.0</item>
+    </style>
+    <style name="toolbar_collapsed_title">
+        <item name="android:textColor">@color/title_color</item>
+    </style>
+
+
+
 </resources>

@@ -22,6 +22,7 @@
     <color name="green_dark">#388E3C</color>
 
     <color name="icon_color">#ffffff</color>
+    <color name="title_color">#FFFFFF</color>
 
 
 </resources>

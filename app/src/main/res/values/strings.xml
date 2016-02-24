@@ -23,11 +23,24 @@
     <!--NavigationHeader-->
     <string name="header.name">Ермошкина Алёна</string>
     <string name="header.email">selestina51@gmail.com</string>
-    <string name="header.rating">0</string>
+    <string name="header.rating">17</string>
 
     <string name="roboto.regular">sans-serif</string>
     <string name="roboto.light">sans-serif-light</string>
     <string name="roboto.condensed">sans-serif-condensed</string>
     <string name="roboto.thin">sans-serif-thin</string>
     <string name="roboto.medium">sans-serif-medium</string>
+
+    <!-- profile-->
+    <string name="profile.email">selestina51@gmail.com</string>
+    <string name="profile.email.description">E-mail</string>
+    <string name="profile.about.text">люблю котиков :3</string>
+    <string name="profile.about.description">О себе</string>
+    <string name="profile.git.link">github.com/Selestina/school-softdesign</string>
+    <string name="profile.git.description">GitHub</string>
+    <string name="profile.vk.link">vk.com/morgenstern1</string>
+    <string name="profile.vk.description">VK</string>
+    <string name="profile.number.mobile">+7(927)217-99-49</string>
+    <string name="profile.number.description">Мобильный</string>
+
 </resources>
