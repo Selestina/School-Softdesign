@@ -15,25 +15,38 @@ import android.view.ViewGroup;
 
 import com.softdesign.school.R;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class ProfileFragment extends Fragment {
+
+    /** appBar - AppBarLayout
+     * actionButton FloatingActionButton
+     * mNavigationView - боковое меню
+     * toolbar - тулбар*/
+    @Bind(R.id.appbar_layout) AppBarLayout appBar;
+    @Bind(R.id.float_action_button) FloatingActionButton actionButton;
+    @Bind(R.id.navigation_view) NavigationView mNavigationView;
+    @Bind(R.id.collapse_toolbar)CollapsingToolbarLayout toolbar;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View convertView = inflater.inflate(R.layout.fragment_profile, null, false);
-        getActivity().setTitle(getResources().getString(R.string.drawer_profile));
-        CollapsingToolbarLayout toolbar = (CollapsingToolbarLayout) getActivity().findViewById(R.id.collapse_toolbar);
-        // Заголовок фрагмента
-        toolbar.setTitle(getResources().getString(R.string.header_name));
+
         return convertView;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        NavigationView mNavigationView = (NavigationView) getActivity().findViewById(R.id.navigation_view);
+        ButterKnife.bind(this, getActivity());
+
+        /**Заголовок фрагмента*/
+        toolbar.setTitle(getResources().getString(R.string.header_name));
+
+        /**Выделяется данный пункт в меню */
         mNavigationView.getMenu().findItem(R.id.drawer_profile).setChecked(true);
-        FloatingActionButton actionButton = (FloatingActionButton) getActivity().findViewById(R.id.float_action_button);
-        AppBarLayout appBar = (AppBarLayout) getActivity().findViewById(R.id.appbar_layout);
 
         appBar.setExpanded(true);
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) actionButton.getLayoutParams();

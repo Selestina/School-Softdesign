@@ -14,29 +14,42 @@ import android.view.ViewGroup;
 
 import com.softdesign.school.R;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 
 public class TasksFragment extends Fragment {
+
+    /** appBar - AppBarLayout
+     * actionButton FloatingActionButton
+     * mNavigationView - боковое меню
+     * toolbar - тулбар*/
+    @Bind(R.id.appbar_layout) AppBarLayout appBar;
+    @Bind(R.id.float_action_button) FloatingActionButton actionButton;
+    @Bind(R.id.navigation_view) NavigationView mNavigationView;
+    @Bind(R.id.collapse_toolbar)CollapsingToolbarLayout toolbar;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View convertView = inflater.inflate(R.layout.fragment_tasks, null, false);
-        getActivity().setTitle(getResources().getString(R.string.drawer_tasks));
-        CollapsingToolbarLayout toolbar = (CollapsingToolbarLayout) getActivity().findViewById(R.id.collapse_toolbar);
-        // Заголовок фрагмента
-        toolbar.setTitle(getResources().getString(R.string.drawer_tasks));
+
         return convertView;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        NavigationView mNavigationView = (NavigationView) getActivity().findViewById(R.id.navigation_view);
+        ButterKnife.bind(this, getActivity());
+
+        /** Заголовок фрагмента*/
+        toolbar.setTitle(getResources().getString(R.string.drawer_tasks));
+
+        /**Выделяется данный пункт в меню */
         mNavigationView.getMenu().findItem(R.id.drawer_tasks).setChecked(true);
 
-        FloatingActionButton actionButton = (FloatingActionButton) getActivity().findViewById(R.id.float_action_button);
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) actionButton.getLayoutParams();
 
-        AppBarLayout appBar = (AppBarLayout) getActivity().findViewById(R.id.appbar_layout);
         appBar.setExpanded(false);
 
     }
